@@ -2,47 +2,38 @@ import requests
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def index(request):
-    print('------ accessing index page')
-    # This is similar to ones we have done before. Instead of keeping
-    # the HTML / template in a separate directory, we just reply with
-    # the HTML embedded here.
-    return HttpResponse('''
-        <h1>Welcome to my home page!</h1>
-        <a href="/about-me">About me</a> <br />
-        <a href="/github-api-example">See my GitHub contributions</a> <br />
-    ''')
-
-
-def about_me(request):
-    print('------ accessing about-me page')
-    # Django comes with a "shortcut" function called "render", that
-    # lets us read in HTML template files in separate directories to
-    # keep our code better organized.
+def index(request): 
+    print('- - - - - -  accessing INDEX page')
+    content_html = open("templates/index.html").read()
+    # navbar = open("templates/navbar.html").read()
+    # print(navbar)
     context = {
-        'name': 'Ash Ketchum',
-        'pokemon': 'Pikachu',
+        "content": content_html,
+        "title": "Home",
+        # "navbar": navbar,
     }
-    return render(request, 'about_me.html', context)
-
-
-def projects(request):
-    print('------ accessing projects page')
-    # We can also combine Django with APIs
-    response = requests.get('https://api.github.com/users/michaelpb/repos')
-    repos = response.json()
-    context = {
-        'projects': repos,
-    }
-    return render(request, 'projects.html', context)
-
-
+    return render(request, "base.html", context)
 
 
 def about(request):
-    content_html = open("content/about.html").read()
+    print('- - - - - -  accessing ABOUT page')
+    content_html = open("templates/about.html").read()
     context = {
-    "about": about_html,
+        "content": content_html,
+        "title": "About",
+    }
+    return render(request, "base.html", context)
+
+
+def projects(request): 
+    print('- - - - - -  accessing PROJECTS page')
+    # We can also combine Django with APIs
+    # response = requests.get('https://api.github.dcom/users/michaelpb/repos')
+    # repos = response.json()
+    content_html = open("templates/projects.html").read()
+    context = {
+        "projects": content_html,
+        "title": "Projects",
     }
     return render(request, "base.html", context)
 

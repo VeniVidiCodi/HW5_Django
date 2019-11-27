@@ -5,13 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- {% load static %} -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito+Sans&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/7e25d4c2ff.js" crossorigin="anonymous"></script>
-    <title> {{title}} </title>
+    <title> {{ title }} </title>
   </head>
   <body>
   
@@ -24,20 +27,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-          {%- for page in pages %}
-              {%- if page.title == output_file|replace(".html", "") -%} 
-              <a href="{{ page.file_name }}" class="active">{{ page.title | title }}</a>
-              {% else %}
-              <a href="{{ page.file_name }}">{{ page.title | title }}</a>
-              {% endif -%}
-          {%- endfor -%}
+            <ul class="navbar-nav">
+              <li><a href="templates/index.html">Home</a></li>
+              <li><a href="templates/about.html">About</a></li>
+              <li><a href="templates/projets.html">Projects</a></li>
+            </ul>
           </div>
         </div>
       </nav>
 
 <!--  CONTENT SECTION  -->
 
-{{content}}
+{{ content | safe }}
 
 
     <!-- Optional JavaScript -->

@@ -1,11 +1,10 @@
 from django.urls import path
-
 import views
 
 # In this example, we've separated out the views.py into a new file
 urlpatterns = [
     path('', views.index),
-    path('about-me', views.about_me),
+    path('about', views.about),
     path('projects', views.projects),
 ]
 
