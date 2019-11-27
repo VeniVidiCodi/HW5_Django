@@ -32,7 +32,7 @@ def projects(request):
     # repos = response.json()
     content_html = open("templates/projects.html").read()
     context = {
-        "projects": content_html,
+        "content": content_html,
         "title": "Projects",
     }
     return render(request, "base.html", context)
