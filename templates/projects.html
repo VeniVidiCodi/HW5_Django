@@ -1,10 +1,15 @@
 
+{% extends "base.html" %}
+
+{% block title %} Projects {% endblock %}
+
+{% block content %}
 <!--  PROFILE COLUMN SECTION BEGINS HERE  -->
 
       <div class="container">
           <div class="row">
             
-            <div class="col">
+            <div class="col-1">
             </div>
 
             <div class="col-md-3"> 
@@ -39,31 +44,32 @@
 <!--  PAGE-SPECIFIC CONTENT SECTION BEGINS HERE  -->
 
             <div class="col-md-6">
-            
+                            
               <div class="card mb-3">
                 <img src="/static/images/merritt-dusk-crop.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title"> Sunset Portfolio Profile: Lake Merritt </h5>
-                  <p class="card-text"> Photography and hiking are both engaging activities in themselves, but when I...</p>
-                  <p class="card-text"><small class="text-muted"> October 22, 2019 </small></p>
-                </div>
-              </div>
-                            
-              <div class="card mb-3">
-                <img src="/static/images/sf-sunset-city.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title"> Sunset Portfolio Profile: San Francisco </h5>
-                  <p class="card-text"> This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title"> My github repos: </h5>
+                  
+                        <ol class="card-text"> 
+                        {% for repo in github_repos %}
+                            <li>
+                            <a href="{{ repo.html_url }}"> {{ repo.name }} </a>
+                            </li>
+                        {% endfor %}
+                        </ol>
+                
                   <p class="card-text"><small class="text-muted"> September 15, 2019 </small></p>
                 </div>
               </div>
-                
             </div>
+          </div>
 
-            <div class="col">
-            </div>
+
+
+          <div class="col">
           </div>
       </div>
     <footer>
       
     </footer>
+{% endblock %}

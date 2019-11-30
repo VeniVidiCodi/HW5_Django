@@ -7,14 +7,14 @@
 
     <!-- {% load static %} -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito+Sans&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/7e25d4c2ff.js" crossorigin="anonymous"></script>
-    <title> {{ title }} </title>
+    <title> {% block title %}  {% endblock %}
+ </title>
   </head>
   <body>
   
@@ -28,9 +28,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <ul class="navbar-nav">
-              <li><a href="templates/index.html">Home</a></li>
-              <li><a href="templates/about.html">About</a></li>
-              <li><a href="templates/projets.html">Projects</a></li>
+              <li><a class="nav {{ index }}" href="{% url 'index' %}">Home</a></li>
+              <li><a class="nav {{ about }}" href="{% url 'about' %}">About</a></li>
+              <li><a class="nav {{ projects }}" href="{% url 'projects' %}">Projects</a></li>
             </ul>
           </div>
         </div>
@@ -38,8 +38,8 @@
 
 <!--  CONTENT SECTION  -->
 
-{{ content | safe }}
-
+{% block content %}
+{% endblock %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

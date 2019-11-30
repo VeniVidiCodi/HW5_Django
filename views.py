@@ -1,39 +1,33 @@
 import requests
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render
 
+
+
 def index(request): 
     print('- - - - - -  accessing INDEX page')
-    content_html = open("templates/index.html").read()
-    # navbar = open("templates/navbar.html").read()
-    # print(navbar)
     context = {
-        "content": content_html,
-        "title": "Home",
-        # "navbar": navbar,
+        "index": "active",
     }
-    return render(request, "base.html", context)
+    return render(request, "index.html", context)
 
 
 def about(request):
     print('- - - - - -  accessing ABOUT page')
-    content_html = open("templates/about.html").read()
     context = {
-        "content": content_html,
-        "title": "About",
+        "about": "active",
     }
-    return render(request, "base.html", context)
+    return render(request, "about.html", context)
 
 
 def projects(request): 
     print('- - - - - -  accessing PROJECTS page')
-    # We can also combine Django with APIs
-    # response = requests.get('https://api.github.dcom/users/michaelpb/repos')
-    # repos = response.json()
-    content_html = open("templates/projects.html").read()
+    response = requests.get('https://api.github.com/users/venividicodi/repos')
+    github_repos = response.json()
     context = {
-        "content": content_html,
-        "title": "Projects",
+        "projects": "active",
+        "github_repos": github_repos
     }
-    return render(request, "base.html", context)
-
+    return render(request, "projects.html", context)
